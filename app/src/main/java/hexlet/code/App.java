@@ -18,9 +18,11 @@ public class App implements Runnable {
     private String filepath2;
 
     public void run() {
-        System.out.println(filepath1);
-        System.out.println(filepath2);
-        System.out.println(format);
+        try{
+            Differ.generate(filepath1, filepath2);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
