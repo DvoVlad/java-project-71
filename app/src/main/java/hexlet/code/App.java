@@ -1,12 +1,30 @@
 package hexlet.code;
 
 import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
+import picocli.CommandLine.Option;
 
-// TIP Для <b>запуска</b> кода нажмите <shortcut actionId="Run"/> или
-// щелкните значок <icon src="AllIcons.Actions.Execute"/> в боковой области.
-public class App {
+@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
+        description = "Compares two configuration files and shows a difference.")
+public class App implements Runnable {
+    @Option(names = {"-f", "--format"}, defaultValue="stylish", description = "output format [default: stylish]")
+    private String format;
+
+    @Parameters(index = "0", description = "path to first file")
+    private String filepath1;
+
+    @Parameters(index = "1", description = "path to second file")
+    private String filepath2;
+
+    public void run() {
+        System.out.println(filepath1);
+        System.out.println(filepath2);
+        System.out.println(format);
+    }
+
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new Differ()).execute(args);
+        int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
     }
 }
