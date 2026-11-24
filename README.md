@@ -1,4 +1,5 @@
 # Вычислитель отличий (Java)
+![Build](https://github.com/Dvovlad/java-project-71/actions/workflows/main.yml/badge.svg)
 
 [![hexlet-check](https://github.com/DvoVlad/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DvoVlad/java-project-71/actions)
 

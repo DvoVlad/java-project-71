@@ -1,5 +1,6 @@
 plugins {
     application
+    jacoco
     id("com.diffplug.spotless") version "6.25.0"
     id("io.github.ben-manes.versions") version "0.66.0"
 }
@@ -38,4 +39,51 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = "BUNDLE"
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = "0.80".toBigDecimal()
+            }
+        }
+    }
+}
+
+tasks.check {
+    dependsOn(tasks.jacocoTestCoverageVerification)
+}
+
+val coverageExcludes = listOf(
+    "**/App.class"
+)
+
+tasks.withType<JacocoReportBase>().configureEach {
+    classDirectories.setFrom(
+        files(classDirectories.files.map {
+            fileTree(it) {
+                exclude(coverageExcludes)
+            }
+        })
+    )
+}
+
+jacoco {
+    toolVersion = "0.8.15"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
