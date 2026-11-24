@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
     - name: Checkout sources
       uses: actions/checkout@v6
@@ -18,7 +21,5 @@ jobs:
         java-version: 21
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v6
-    - name: "go to project"
-      run: cd app
     - name: Build with Gradle
       run: ./gradlew build
