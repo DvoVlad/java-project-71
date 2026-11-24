@@ -35,6 +35,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("info.picocli:picocli:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.23.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2")
+    implementation("org.apache.tika:tika-core:4.2.0")
+    implementation("org.apache.tika:tika-parsers-standard-package:4.2.0@pom")
+    implementation("org.slf4j:slf4j-nop:2.0.16")
 }
 
 tasks.test {

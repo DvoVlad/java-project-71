@@ -1,8 +1,7 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.nio.file.Files;
+import static hexlet.code.utils.Parser.parse;
+
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
@@ -47,18 +46,5 @@ public class Differ {
             }
         }
         System.out.println("}");
-        // System.out.println(result);
-        // System.out.println(map1);
-        // System.out.println(map2);
-    }
-
-    public static Map<String, Object> parse(Path path) throws Exception {
-        String content = Files.readString(path);
-
-        if (Files.probeContentType(path).equals("application/json")) {
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(content, new TypeReference<Map<String, Object>>() {});
-        }
-        return Map.of();
     }
 }
