@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 public class PlainFormatter {
     public static String format(
-            TreeMap<String, Object> map, Map<String, Object> map1, Map<String, Object> map2) {
+            TreeMap<String, String> map, Map<String, Object> map1, Map<String, Object> map2) {
         StringBuilder sb = new StringBuilder();
         for (var resultPaint : map.entrySet()) {
             var key = resultPaint.getKey();

@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class StylishFormatter {
     public static String format(
-            TreeMap<String, Object> map, Map<String, Object> map1, Map<String, Object> map2) {
+            TreeMap<String, String> map, Map<String, Object> map1, Map<String, Object> map2) {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
         for (var resultPaint : map.entrySet()) {

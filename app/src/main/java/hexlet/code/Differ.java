@@ -15,7 +15,7 @@ public class Differ {
         Path path2 = Path.of(filepath2);
         Map<String, Object> map1 = parse(path1);
         Map<String, Object> map2 = parse(path2);
-        TreeMap<String, Object> result = new TreeMap<>();
+        TreeMap<String, String> result = new TreeMap<>();
         for (var pair : map1.entrySet()) {
             var key = pair.getKey();
             var value = pair.getValue();

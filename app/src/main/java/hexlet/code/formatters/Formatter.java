@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class Formatter {
     public static String format(
-            TreeMap<String, Object> map,
+            TreeMap<String, String> map,
             Map<String, Object> map1,
             Map<String, Object> map2,
             String formatName)
