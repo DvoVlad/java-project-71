@@ -11,15 +11,29 @@ public class StylishFormatter {
         for (var resultPaint : map.entrySet()) {
             var key = resultPaint.getKey();
             var value = resultPaint.getValue();
-            if (value.equals("deleted")) {
-                sb.append("  - ").append(key).append(": ").append(map1.get(key)).append("\n");
-            } else if (value.equals("unchanged")) {
-                sb.append("    ").append(key).append(": ").append(map1.get(key)).append("\n");
-            } else if (value.equals("changed")) {
-                sb.append("  - ").append(key).append(": ").append(map1.get(key)).append("\n");
-                sb.append("  + ").append(key).append(": ").append(map2.get(key)).append("\n");
-            } else if (value.equals("added")) {
-                sb.append("  + ").append(key).append(": ").append(map2.get(key)).append("\n");
+            switch (value) {
+                case "deleted" ->
+                        sb.append("  - ")
+                                .append(key)
+                                .append(": ")
+                                .append(map1.get(key))
+                                .append("\n");
+                case "unchanged" ->
+                        sb.append("    ")
+                                .append(key)
+                                .append(": ")
+                                .append(map1.get(key))
+                                .append("\n");
+                case "changed" -> {
+                    sb.append("  - ").append(key).append(": ").append(map1.get(key)).append("\n");
+                    sb.append("  + ").append(key).append(": ").append(map2.get(key)).append("\n");
+                }
+                case "added" ->
+                        sb.append("  + ")
+                                .append(key)
+                                .append(": ")
+                                .append(map2.get(key))
+                                .append("\n");
             }
         }
         sb.append("}\n");
