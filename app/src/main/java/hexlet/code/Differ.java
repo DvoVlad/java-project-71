@@ -2,14 +2,15 @@ package hexlet.code;
 
 import static hexlet.code.utils.Parser.parse;
 
-import hexlet.code.formatter.Formatter;
+import hexlet.code.formatters.Formatter;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
 public class Differ {
-    public static void generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filepath1, String filepath2, String formatName)
+            throws Exception {
         Path path1 = Path.of(filepath1);
         Path path2 = Path.of(filepath2);
         Map<String, Object> map1 = parse(path1);
@@ -31,6 +32,6 @@ public class Differ {
                 result.put(key2, "added");
             }
         }
-        Formatter.format(result, map1, map2);
+        return Formatter.format(result, map1, map2, formatName);
     }
 }
