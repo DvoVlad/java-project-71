@@ -2,6 +2,7 @@ package hexlet.code;
 
 import static hexlet.code.utils.Parser.parse;
 
+import hexlet.code.formatter.Formatter;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
@@ -13,7 +14,7 @@ public class Differ {
         Path path2 = Path.of(filepath2);
         Map<String, Object> map1 = parse(path1);
         Map<String, Object> map2 = parse(path2);
-        Map<String, Object> result = new TreeMap<>();
+        TreeMap<String, Object> result = new TreeMap<>();
         for (var pair : map1.entrySet()) {
             var key = pair.getKey();
             var value = pair.getValue();
@@ -30,21 +31,6 @@ public class Differ {
                 result.put(key2, "added");
             }
         }
-        System.out.println("{");
-        for (var resultPaint : result.entrySet()) {
-            var key = resultPaint.getKey();
-            var value = resultPaint.getValue();
-            if (value.equals("deleted")) {
-                System.out.println("  - " + key + ": " + map1.get(key));
-            } else if (value.equals("unchanged")) {
-                System.out.println("    " + key + ": " + map1.get(key));
-            } else if (value.equals("changed")) {
-                System.out.println("  - " + key + ": " + map1.get(key));
-                System.out.println("  + " + key + ": " + map2.get(key));
-            } else if (value.equals("added")) {
-                System.out.println("  + " + key + ": " + map2.get(key));
-            }
-        }
-        System.out.println("}");
+        Formatter.format(result, map1, map2);
     }
 }

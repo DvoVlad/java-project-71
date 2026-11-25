@@ -27,7 +27,8 @@ public class DifferTest {
     }
 
     @Test
-    public void testDifferJson() throws Exception {
+    public void testDifferJsonStylish() throws Exception {
+        App.format = "stylish";
         String path1 = Paths.get("src", "test", "resources", "file1.json").toString();
         String path2 = Paths.get("src", "test", "resources", "file2.json").toString();
         Path expectedFilePath = Paths.get("src", "test", "resources", "expected_output.txt");
@@ -38,10 +39,35 @@ public class DifferTest {
     }
 
     @Test
-    public void testDifferYaml() throws Exception {
+    public void testDifferJsonNestedStylish() throws Exception {
+        App.format = "stylish";
+        String path1 = Paths.get("src", "test", "resources", "file1nested.json").toString();
+        String path2 = Paths.get("src", "test", "resources", "file2nested.json").toString();
+        Path expectedFilePath = Paths.get("src", "test", "resources", "expected_output_nested.txt");
+        Differ.generate(path1, path2);
+        String expected = Files.readString(expectedFilePath, StandardCharsets.UTF_8);
+        String actual = outputStreamCaptor.toString(StandardCharsets.UTF_8);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDifferYamlStylish() throws Exception {
+        App.format = "stylish";
         String path1 = Paths.get("src", "test", "resources", "file1.yaml").toString();
         String path2 = Paths.get("src", "test", "resources", "file2.yaml").toString();
         Path expectedFilePath = Paths.get("src", "test", "resources", "expected_output.txt");
+        Differ.generate(path1, path2);
+        String expected = Files.readString(expectedFilePath, StandardCharsets.UTF_8);
+        String actual = outputStreamCaptor.toString(StandardCharsets.UTF_8);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDifferYamlNestedStylish() throws Exception {
+        App.format = "stylish";
+        String path1 = Paths.get("src", "test", "resources", "file1nested.yaml").toString();
+        String path2 = Paths.get("src", "test", "resources", "file2nested.yaml").toString();
+        Path expectedFilePath = Paths.get("src", "test", "resources", "expected_output_nested.txt");
         Differ.generate(path1, path2);
         String expected = Files.readString(expectedFilePath, StandardCharsets.UTF_8);
         String actual = outputStreamCaptor.toString(StandardCharsets.UTF_8);
