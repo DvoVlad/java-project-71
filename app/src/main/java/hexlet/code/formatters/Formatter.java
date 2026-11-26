@@ -15,6 +15,6 @@ public class Formatter {
         } else if (formatName.equals("plain")) {
             return PlainFormatter.format(map, map1, map2);
         }
-        throw new Exception("Формат не опознан");
+        throw new Exception("Формат " + formatName + " не опознан");
     }
 }

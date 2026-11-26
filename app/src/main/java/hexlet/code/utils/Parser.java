@@ -18,7 +18,7 @@ public class Parser {
         if (tika.detect(path).equals("text/x-yaml")) {
             return parseYaml(content);
         }
-        return Map.of();
+        throw new Exception("Unsupported file format " + tika.detect(path));
     }
 
     private static Map<String, Object> parseJson(String content) throws Exception {

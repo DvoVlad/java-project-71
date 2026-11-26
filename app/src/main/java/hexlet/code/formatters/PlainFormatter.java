@@ -14,7 +14,10 @@ public class PlainFormatter {
             var value = resultPaint.getValue();
             switch (value) {
                 case "deleted" ->
-                        sb.append("Property '").append(key).append("' was removed").append("\n");
+                        sb.append("Property '")
+                                .append(key)
+                                .append("' was removed")
+                                .append(System.lineSeparator());
                 case "changed" -> {
                     String value1;
                     String value2;
@@ -46,7 +49,7 @@ public class PlainFormatter {
                             .append(value1)
                             .append(" to ")
                             .append(value2)
-                            .append("\n");
+                            .append(System.lineSeparator());
                     ;
                 }
                 case "added" -> {
@@ -66,7 +69,7 @@ public class PlainFormatter {
                             .append(key)
                             .append("' was added with value: ")
                             .append(valueAdded)
-                            .append("\n");
+                            .append(System.lineSeparator());
                 }
             }
         }
