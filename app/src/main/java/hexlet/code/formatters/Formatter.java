@@ -1,19 +1,17 @@
 package hexlet.code.formatters;
 
-import java.util.Map;
+import java.util.List;
 import java.util.TreeMap;
 
 public class Formatter {
-    public static String format(
-            TreeMap<String, String> map,
-            Map<String, Object> map1,
-            Map<String, Object> map2,
-            String formatName)
+    public static String format(TreeMap<String, List<Object>> diff, String formatName)
             throws Exception {
         if (formatName.equals("stylish")) {
-            return StylishFormatter.format(map, map1, map2);
+            return StylishFormatter.format(diff);
         } else if (formatName.equals("plain")) {
-            return PlainFormatter.format(map, map1, map2);
+            return PlainFormatter.format(diff);
+        } else if (formatName.equals("json")) {
+            return JsonFormatter.format(diff);
         }
         throw new Exception("Формат " + formatName + " не опознан");
     }

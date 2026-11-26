@@ -1,18 +1,14 @@
 package hexlet.code.formatters;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PlainFormatter {
-    public static String format(
-            TreeMap<String, String> map, Map<String, Object> map1, Map<String, Object> map2) {
+    public static String format(TreeMap<String, List<Object>> diff) {
         StringBuilder sb = new StringBuilder();
-        for (var resultPaint : map.entrySet()) {
+        for (var resultPaint : diff.entrySet()) {
             var key = resultPaint.getKey();
             var value = resultPaint.getValue();
-            switch (value) {
+            switch ((String) value.get(0)) {
                 case "deleted" ->
                         sb.append("Property '")
                                 .append(key)
@@ -21,27 +17,27 @@ public class PlainFormatter {
                 case "changed" -> {
                     String value1;
                     String value2;
-                    if (map1.get(key) == null) {
+                    if (value.get(1) == null) {
                         value1 = "null";
-                    } else if (map1.get(key) instanceof String) {
-                        value1 = "'" + map1.get(key) + "'";
+                    } else if (value.get(1) instanceof String) {
+                        value1 = "'" + value.get(1) + "'";
                     } else {
                         value1 =
-                                map1.get(key) instanceof ArrayList<?>
-                                                || map1.get(key) instanceof LinkedHashMap<?, ?>
+                                value.get(1) instanceof ArrayList<?>
+                                                || value.get(1) instanceof LinkedHashMap<?, ?>
                                         ? "[complex value]"
-                                        : map1.get(key).toString();
+                                        : value.get(1).toString();
                     }
-                    if (map2.get(key) == null) {
+                    if (value.get(2) == null) {
                         value2 = "null";
-                    } else if (map2.get(key) instanceof String) {
-                        value2 = "'" + map2.get(key) + "'";
+                    } else if (value.get(2) instanceof String) {
+                        value2 = "'" + value.get(2) + "'";
                     } else {
                         value2 =
-                                map2.get(key) instanceof ArrayList<?>
-                                                || map2.get(key) instanceof LinkedHashMap<?, ?>
+                                value.get(2) instanceof ArrayList<?>
+                                                || value.get(2) instanceof LinkedHashMap<?, ?>
                                         ? "[complex value]"
-                                        : map2.get(key).toString();
+                                        : value.get(2).toString();
                     }
                     sb.append("Property '")
                             .append(key)
@@ -54,16 +50,16 @@ public class PlainFormatter {
                 }
                 case "added" -> {
                     String valueAdded;
-                    if (map2.get(key) == null) {
+                    if (value.get(1) == null) {
                         valueAdded = "null";
-                    } else if (map2.get(key) instanceof String) {
-                        valueAdded = "'" + map2.get(key) + "'";
+                    } else if (value.get(1) instanceof String) {
+                        valueAdded = "'" + value.get(1) + "'";
                     } else {
                         valueAdded =
-                                map2.get(key) instanceof ArrayList<?>
-                                                || map2.get(key) instanceof LinkedHashMap<?, ?>
+                                value.get(1) instanceof ArrayList<?>
+                                                || value.get(1) instanceof LinkedHashMap<?, ?>
                                         ? "[complex value]"
-                                        : map2.get(key).toString();
+                                        : value.get(1).toString();
                     }
                     sb.append("Property '")
                             .append(key)

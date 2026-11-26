@@ -1,5 +1,8 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -29,6 +32,12 @@ public class App implements Callable<Integer> {
         try {
             String diff = Differ.generate(filepath1, filepath2, format);
             System.out.println(diff);
+        } catch (JsonMappingException e) {
+            System.out.println("Ошибка парсинга JSON: " + e.getMessage());
+        } catch (JsonProcessingException e) {
+            System.out.println("Ошибка обработки JSON: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Файл не найден:" + e.getMessage());
         } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());
         }

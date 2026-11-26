@@ -1,42 +1,41 @@
 package hexlet.code.formatters;
 
-import java.util.Map;
+import java.util.List;
 import java.util.TreeMap;
 
 public class StylishFormatter {
-    public static String format(
-            TreeMap<String, String> map, Map<String, Object> map1, Map<String, Object> map2) {
+    public static String format(TreeMap<String, List<Object>> diff) {
         StringBuilder sb = new StringBuilder();
         sb.append("{").append(System.lineSeparator());
-        for (var resultPaint : map.entrySet()) {
+        for (var resultPaint : diff.entrySet()) {
             var key = resultPaint.getKey();
             var value = resultPaint.getValue();
-            switch (value) {
+            switch ((String) value.get(0)) {
                 case "deleted" ->
                         sb.append(" ".repeat(2))
                                 .append("- ")
                                 .append(key)
                                 .append(": ")
-                                .append(map1.get(key))
+                                .append(value.get(1))
                                 .append(System.lineSeparator());
                 case "unchanged" ->
                         sb.append(" ".repeat(4))
                                 .append(key)
                                 .append(": ")
-                                .append(map1.get(key))
+                                .append(value.get(1))
                                 .append(System.lineSeparator());
                 case "changed" -> {
                     sb.append(" ".repeat(2))
                             .append("- ")
                             .append(key)
                             .append(": ")
-                            .append(map1.get(key))
+                            .append(value.get(1))
                             .append(System.lineSeparator());
                     sb.append(" ".repeat(2))
                             .append("+ ")
                             .append(key)
                             .append(": ")
-                            .append(map2.get(key))
+                            .append(value.get(2))
                             .append(System.lineSeparator());
                 }
                 case "added" ->
@@ -44,7 +43,7 @@ public class StylishFormatter {
                                 .append("+ ")
                                 .append(key)
                                 .append(": ")
-                                .append(map2.get(key))
+                                .append(value.get(1))
                                 .append(System.lineSeparator());
             }
         }
