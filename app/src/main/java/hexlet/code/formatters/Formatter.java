@@ -6,13 +6,11 @@ import java.util.TreeMap;
 public class Formatter {
     public static String format(TreeMap<String, List<Object>> diff, String formatName)
             throws Exception {
-        if (formatName.equals("stylish")) {
-            return StylishFormatter.format(diff);
-        } else if (formatName.equals("plain")) {
-            return PlainFormatter.format(diff);
-        } else if (formatName.equals("json")) {
-            return JsonFormatter.format(diff);
-        }
-        throw new Exception("Формат " + formatName + " не опознан");
+        return switch (formatName) {
+            case "stylish" -> StylishFormatter.format(diff);
+            case "plain" -> PlainFormatter.format(diff);
+            case "json" -> JsonFormatter.format(diff);
+            default -> throw new Exception("Формат " + formatName + " не опознан");
+        };
     }
 }
