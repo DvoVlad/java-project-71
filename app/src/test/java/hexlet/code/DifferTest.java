@@ -132,4 +132,14 @@ public class DifferTest {
         String actual = Differ.generate(path1, path2, "json");
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testDefault() throws Exception {
+        String path1 = Paths.get("src", "test", "resources", "file1.json").toString();
+        String path2 = Paths.get("src", "test", "resources", "file2.json").toString();
+        Path expectedFilePath = Paths.get("src", "test", "resources", "expected_output.txt");
+        String expected = Files.readString(expectedFilePath, StandardCharsets.UTF_8);
+        String actual = Differ.generate(path1, path2);
+        assertEquals(expected, actual);
+    }
 }
