@@ -1,4 +1,8 @@
 # Вычислитель отличий (Java)
+[Сравнение плоских файлов json и yaml Stylish](https://asciinema.org/a/FgEf8PThOH1Gvu3r)\
+[Сравнение файлов со вложенностями json и yaml Stylish](https://asciinema.org/a/Ph1LRZHzFnys94cn)\
+[Сравнение файлов json и yaml в формате Plain](https://asciinema.org/a/SdC6fbnCDmqHYy8d)\
+[Сравнение файлов json и yaml в формате Json](https://asciinema.org/a/8JEbnFtpuWQTyAvu)\
 ![Build](https://github.com/Dvovlad/java-project-71/actions/workflows/main.yml/badge.svg)
 
 [![hexlet-check](https://github.com/DvoVlad/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DvoVlad/java-project-71/actions)
