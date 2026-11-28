@@ -5,6 +5,7 @@ import java.util.*;
 public class PlainFormatter {
     public static String format(TreeMap<String, List<Object>> diff) {
         StringBuilder sb = new StringBuilder();
+        String separator = System.lineSeparator();
         for (var resultPaint : diff.entrySet()) {
             var key = resultPaint.getKey();
             var value = resultPaint.getValue();
@@ -13,7 +14,7 @@ public class PlainFormatter {
                         sb.append("Property '")
                                 .append(key)
                                 .append("' was removed")
-                                .append(System.lineSeparator());
+                                .append(separator);
                 case "changed" -> {
                     String value1;
                     String value2;
@@ -45,7 +46,7 @@ public class PlainFormatter {
                             .append(value1)
                             .append(" to ")
                             .append(value2)
-                            .append(System.lineSeparator());
+                            .append(separator);
                     ;
                 }
                 case "added" -> {
@@ -65,9 +66,12 @@ public class PlainFormatter {
                             .append(key)
                             .append("' was added with value: ")
                             .append(valueAdded)
-                            .append(System.lineSeparator());
+                            .append(separator);
                 }
             }
+        }
+        if(!sb.isEmpty()) {
+            sb.setLength(sb.length() - separator.length());
         }
         return sb.toString();
     }
