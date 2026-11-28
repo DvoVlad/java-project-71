@@ -70,7 +70,7 @@ public class PlainFormatter {
                 }
             }
         }
-        if(!sb.isEmpty()) {
+        if (!sb.isEmpty()) {
             sb.setLength(sb.length() - separator.length());
         }
         return sb.toString();
